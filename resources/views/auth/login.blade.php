@@ -25,7 +25,7 @@
 
             <!-- Password -->
             <div class="mt-4">
-                <x-input-label for="password" :value="__('Password')" />
+                <x-input-label for="password" :value="__('Contraseña')" />
 
                 <x-text-input id="password" class="block mt-1 w-full"
                                 type="password"
@@ -37,7 +37,8 @@
             <div class="block mt-4">
                 <label for="remember_me" class="inline-flex items-center">
                     <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                    {{-- __('Algun texto') => Lo que se encuentre dentro de los guiones y parentecis como en el ejemplo, quiere decir que se puede traducir --}}
+                    <span class="ml-2 text-sm text-gray-600">{{ __('Recordarme') }}</span>
                 </label>
             </div>
 
@@ -51,13 +52,14 @@
                 <x-link
                     :href="route('password.request')"
                 >
-                    Olvidaste tu Password
+                    Olvidaste tu Contraseña?
                 </x-link>
 
             </div>
 
-            <x-primary-button class="ml-3">
-                {{ __('Log in') }}
+            <x-primary-button class="w-full justify-center">
+                {{-- __('Algun texto') => Lo que se encuentre dentro de los guiones y parentecis como en el ejemplo, quiere decir que se puede traducir --}}
+                {{ __('Iniciar Sesión') }}
             </x-primary-button>
         </form>
     </x-auth-card>
