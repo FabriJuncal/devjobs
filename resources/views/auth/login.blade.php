@@ -57,6 +57,7 @@
 
             </div>
 
+            {{-- Se pueden agregar clases a los componentenes en donde estos sobreescribiran los estilos por defectos del componente --}}
             <x-primary-button class="w-full justify-center">
                 {{-- __('Algun texto') => Lo que se encuentre dentro de los guiones y parentecis como en el ejemplo, quiere decir que se puede traducir --}}
                 {{ __('Iniciar Sesión') }}
