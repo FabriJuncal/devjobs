@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+    // Agregamos una 2da validación para que el usuario pueda ver las páginas de la plataforma
+    // Para esto agregamos el valor "verified" en la función "middleware([])"
+})->middleware(['auth' ,'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
