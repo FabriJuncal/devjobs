@@ -7,7 +7,7 @@
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+            {{ __('¿Olvidaste tu contraseña? coloca tu email de registro y te enviaremos un enlace para que puedas crear uno nuevo.') }}
         </div>
 
         <!-- Session Status -->
@@ -26,11 +26,26 @@
                 <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <x-primary-button>
-                    {{ __('Email Password Reset Link') }}
-                </x-primary-button>
+            <div class="flex justify-between mt-5 mb-4">
+                <x-link
+                    :href="route('login')"
+                >
+                    Iniciar Sesión
+                </x-link>
+
+                <x-link
+                    :href="route('register')"
+                >
+                    Crear Cuenta
+                </x-link>
+
             </div>
+
+            {{-- Se pueden agregar clases a los componentenes en donde estos sobreescribiran los estilos por defectos del componente --}}
+            <x-primary-button class="w-full justify-center">
+                {{-- __('Algun texto') => Lo que se encuentre dentro de los guiones y parentecis como en el ejemplo, quiere decir que se puede traducir --}}
+                {{ __('Enviar Instrucciones') }}
+            </x-primary-button>
         </form>
     </x-auth-card>
 </x-guest-layout>
