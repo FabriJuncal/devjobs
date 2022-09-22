@@ -16,14 +16,27 @@
             <div>
                 <x-input-label for="name" :value="__('Nombre')" />
 
-                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" autofocus />
             </div>
 
             <!-- Email Address -->
             <div class="mt-4">
                 <x-input-label for="email" :value="__('Email')" />
 
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" />
+            </div>
+
+            <!-- Rol -->
+            <div class="mt-4">
+                <x-input-label for="email" :value="__('¿Que tipo de Cuenta deseas en DevJobs?')" />
+
+                <select name="rol" id="rol"
+                        class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full">
+
+                        <option value="">-- Selecciona un rol --</option>
+                        <option value="1">Developer - Obtener Empleo</option>
+                        <option value="2">Recruiter - Publicar Empleos</option>
+                </select>
             </div>
 
             <!-- Password -->
@@ -33,7 +46,7 @@
                 <x-text-input id="password" class="block mt-1 w-full"
                                 type="password"
                                 name="password"
-                                required autocomplete="new-password" />
+                                autocomplete="new-password" />
             </div>
 
             <!-- Confirm Password -->
@@ -42,7 +55,7 @@
 
                 <x-text-input id="password_confirmation" class="block mt-1 w-full"
                                 type="password"
-                                name="password_confirmation" required />
+                                name="password_confirmation" />
             </div>
 
             <div class="flex justify-between mt-5 mb-4">
