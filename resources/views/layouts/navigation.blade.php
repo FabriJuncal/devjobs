@@ -12,9 +12,12 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    {{-- request()->routeIs => Resalta la opción del menú si la ruta actual es igual a valor pasado como parametro --}}
+                    {{-- request()->routeIs => Resalta la opción del menú con Estilos CSS si la ruta actual es igual a valor pasado como parametro --}}
                     <x-nav-link :href="route('vacantes.index')" :active="request()->routeIs('vacantes.index')">
                         {{ __('Mis Vacantes') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')">
+                        {{ __('Crear Vacante') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -66,6 +69,9 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('vacantes.index')" :active="request()->routeIs('vacantes.index')">
                 {{ __('Mis Vacantes') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')">
+                {{ __('Crear Vacante') }}
             </x-responsive-nav-link>
         </div>
 

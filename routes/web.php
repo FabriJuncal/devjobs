@@ -18,8 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Agregamos una 2da validación para que el usuario pueda ver las páginas de la plataforma
 // Para esto agregamos el valor "verified" en la función "middleware([])"
+// Agregamos una 2da validación para que el usuario pueda ver las páginas de la plataforma
 Route::get('/dashboard',[ VacanteController::class, 'index'])->middleware(['auth' ,'verified'])->name('vacantes.index');
+Route::get('/vacantes/create',[ VacanteController::class, 'create'])->middleware(['auth' ,'verified'])->name('vacantes.create');
 
 require __DIR__.'/auth.php';
