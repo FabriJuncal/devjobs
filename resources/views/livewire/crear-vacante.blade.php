@@ -9,7 +9,9 @@
 
         {{-- @error('') => Acepta un parametro que debe ser el mismo que el valor que se agregó al atributo "wire:model" del campo --}}
         @error('titulo')
-            {{$message}}
+        {{-- Siempre los Componente de Livewiere deben seguír esta convención "<livewire:[nombre del componente]" /> --}}
+        {{-- :message="$message" => De esta manera le pasamos un parametro al Componente --}}
+            <livewire:mostrar-alerta :message="$message"/>
         @enderror
     </div>
 
@@ -24,6 +26,13 @@
                 <option value="{{ $salario->id }}">{{ $salario->salario }}</option>
             @endforeach
         </select>
+
+        {{-- @error('') => Acepta un parametro que debe ser el mismo que el valor que se agregó al atributo "wire:model" del campo --}}
+        @error('salario')
+        {{-- Siempre los Componente de Livewiere deben seguír esta convención "<livewire:[nombre del componente]" /> --}}
+        {{-- :message="$message" => De esta manera le pasamos un parametro al Componente --}}
+            <livewire:mostrar-alerta :message="$message"/>
+        @enderror
     </div>
 
     <!-- Categoría -->
@@ -36,6 +45,13 @@
                 <option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>
             @endforeach
         </select>
+
+        {{-- @error('') => Acepta un parametro que debe ser el mismo que el valor que se agregó al atributo "wire:model" del campo --}}
+        @error('categoria')
+        {{-- Siempre los Componente de Livewiere deben seguír esta convención "<livewire:[nombre del componente]" /> --}}
+        {{-- :message="$message" => De esta manera le pasamos un parametro al Componente --}}
+            <livewire:mostrar-alerta :message="$message"/>
+        @enderror
     </div>
 
     <!-- Empresa -->
@@ -43,6 +59,13 @@
         <x-input-label for="empresa" :value="__('Empresa')" />
         {{-- wire:model => Suplanta al atributo "name" y sirve para sincronizar con los atributos directamente del backend mediante Livewire --}}
         <x-text-input id="empresa" class="block mt-1 w-full" type="text" wire:model="empresa" :value="old('empresa')" placeholder="Empresa: ej. Netflix, Uber, Shopify"/>
+
+        {{-- @error('') => Acepta un parametro que debe ser el mismo que el valor que se agregó al atributo "wire:model" del campo --}}
+        @error('empresa')
+        {{-- Siempre los Componente de Livewiere deben seguír esta convención "<livewire:[nombre del componente]" /> --}}
+        {{-- :message="$message" => De esta manera le pasamos un parametro al Componente --}}
+            <livewire:mostrar-alerta :message="$message"/>
+        @enderror
     </div>
 
     <!-- Último Día para postularse -->
@@ -50,6 +73,13 @@
         <x-input-label for="ultimo_dia" :value="__('Último Día para postularse')" />
         {{-- wire:model => Suplanta al atributo "name" y sirve para sincronizar con los atributos directamente del backend mediante Livewire --}}
         <x-text-input id="ultimo_dia" class="block mt-1 w-full" type="date" wire:model="ultimo_dia" :value="old('ultimo_dia')"/>
+
+        {{-- @error('') => Acepta un parametro que debe ser el mismo que el valor que se agregó al atributo "wire:model" del campo --}}
+        @error('ultimo_dia')
+        {{-- Siempre los Componente de Livewiere deben seguír esta convención "<livewire:[nombre del componente]" /> --}}
+        {{-- :message="$message" => De esta manera le pasamos un parametro al Componente --}}
+            <livewire:mostrar-alerta :message="$message"/>
+        @enderror
     </div>
 
     <!-- Último Día para postularse -->
@@ -58,6 +88,13 @@
         {{-- wire:model => Suplanta al atributo "name" y sirve para sincronizar con los atributos directamente del backend mediante Livewire --}}
         <textarea id="descripcion" wire:model="descripcion" placeholder="Descripción general del puesto, experiencia"  class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full h-72" />
         </textarea>
+
+        {{-- @error('') => Acepta un parametro que debe ser el mismo que el valor que se agregó al atributo "wire:model" del campo --}}
+        @error('descripcion')
+        {{-- Siempre los Componente de Livewiere deben seguír esta convención "<livewire:[nombre del componente]" /> --}}
+        {{-- :message="$message" => De esta manera le pasamos un parametro al Componente --}}
+            <livewire:mostrar-alerta :message="$message"/>
+        @enderror
     </div>
 
     <!-- Imagen -->
@@ -65,6 +102,13 @@
         <x-input-label for="imagen" :value="__('imagen')" />
         {{-- wire:model => Suplanta al atributo "name" y sirve para sincronizar con los atributos directamente del backend mediante Livewire --}}
         <x-text-input id="imagen" class="block mt-1" type="file" wire:model="imagen"/>
+
+        {{-- @error('') => Acepta un parametro que debe ser el mismo que el valor que se agregó al atributo "wire:model" del campo --}}
+        @error('imagen')
+        {{-- Siempre los Componente de Livewiere deben seguír esta convención "<livewire:[nombre del componente]" /> --}}
+        {{-- :message="$message" => De esta manera le pasamos un parametro al Componente --}}
+            <livewire:mostrar-alerta :message="$message"/>
+        @enderror
     </div>
 
     {{-- Se pueden agregar clases a los componentenes en donde estos sobreescribiran los estilos por defectos del componente --}}
