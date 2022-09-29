@@ -1,9 +1,16 @@
-<form action="" class="md:w-1/2 space-y-5">
+{{-- wire:submit.prevent => Le agrega la misma funcionalidad que el "Prevent Default" para quitar la acción por default del formulario.
+                            Tambien de esta forma enviamos los datos de los campos a los atributos sincronizados en el backend mediante Livewire --}}
+<form action="" class="md:w-1/2 space-y-5" wire:submit.prevent='crearVacante'>
     <!-- Titulo Vacante -->
     <div>
         <x-input-label for="titulo" :value="__('Titulo Vacante')" />
         {{-- wire:model => Suplanta al atributo "name" y sirve para sincronizar con los atributos directamente del backend mediante Livewire --}}
         <x-text-input id="titulo" class="block mt-1 w-full" type="text" wire:model="titulo" :value="old('titulo')" placeholder="Titulo Vacante" />
+
+        {{-- @error('') => Acepta un parametro que debe ser el mismo que el valor que se agregó al atributo "wire:model" del campo --}}
+        @error('titulo')
+            {{$message}}
+        @enderror
     </div>
 
     <!-- Salario Mensual -->

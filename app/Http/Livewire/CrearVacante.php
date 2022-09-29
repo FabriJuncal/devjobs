@@ -20,6 +20,7 @@ class CrearVacante extends Component
     public $imagen;
 
     /** Agregamos las reglas de validación para los campos del formulario **/
+    /** Cabe destacar que la variable debe llamarse "$rule" por convención de Laravel, sino no se tomarán las reglas **/
     protected $rules = [
         'titulo' => 'required|string',
         'salario' => 'required',
@@ -29,6 +30,13 @@ class CrearVacante extends Component
         'descripcion' => 'required',
         'imagen' => 'required',
     ];
+
+    public function crearVacante()
+    {
+        //$this->validate() => Toma las reglas asignadas por convención a la variable "$rules" y valida que se hayan cumplido las reglas.
+        //                     Si se cumplieron todas las reglas los valores de los campos se asignan a la variable "datos"
+        $datos = $this->validate();
+    }
 
 
     public function render()
