@@ -113,6 +113,9 @@
         <div class="my-5 w-80">
             @if ($imagen)
                 Preview de imagen seleccionada:
+                {{-- En el atributo "src" llamos al atributo que contendrá la imagen
+                    (El atributo en este caso es "$imagen" y se lo puede encontrar definido en el archivo .php del componente).
+                    Luego llamos al método "temporaryUrl()" que almacena la imagen de manera temporal. --}}
                 <img src="{{ $imagen->temporaryUrl() }}" alt="Preview de imagen seleccionada">
 
             @endif
