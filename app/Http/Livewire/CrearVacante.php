@@ -5,6 +5,8 @@ namespace App\Http\Livewire;
 use App\Models\Categoria;
 use App\Models\Salario;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+
 // Los PHP de los componentes tienen la funcionalidad similar a la de un Controlador de Laravel
 class CrearVacante extends Component
 {
@@ -19,6 +21,9 @@ class CrearVacante extends Component
     public $descripcion;
     public $imagen;
 
+    // Habilita la subida de archivos en un componente de Livewire
+    use WithFileUploads;
+
     /** Agregamos las reglas de validación para los campos del formulario **/
     /** Cabe destacar que la variable debe llamarse "$rule" por convención de Laravel, sino no se tomarán las reglas **/
     protected $rules = [
@@ -28,7 +33,7 @@ class CrearVacante extends Component
         'empresa' => 'required',
         'ultimo_dia' => 'required',
         'descripcion' => 'required',
-        'imagen' => 'required',
+        'imagen' => 'required|image|max:1024',
     ];
 
     public function crearVacante()

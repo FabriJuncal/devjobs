@@ -101,7 +101,14 @@
     <div>
         <x-input-label for="imagen" :value="__('imagen')" />
         {{-- wire:model => Suplanta al atributo "name" y sirve para sincronizar con los atributos directamente del backend mediante Livewire --}}
-        <x-text-input id="imagen" class="block mt-1" type="file" wire:model="imagen"/>
+        <x-text-input
+            id="imagen"
+            class="block mt-1"
+            type="file"
+            wire:model="imagen"
+            accept="image/*"/> {{-- Indicamos en el campo que solo se permitirá imagenes,
+                                    por lo tanto esto hará que a la hora de seleccionar un
+                                    archivo, solo se muestren las imagenes --}}
 
         {{-- @error('') => Acepta un parametro que debe ser el mismo que el valor que se agregó al atributo "wire:model" del campo --}}
         @error('imagen')
