@@ -110,6 +110,14 @@
                                     por lo tanto esto hará que a la hora de seleccionar un
                                     archivo, solo se muestren las imagenes --}}
 
+        <div class="my-5 w-80">
+            @if ($imagen)
+                Preview de imagen seleccionada:
+                <img src="{{ $imagen->temporaryUrl() }}" alt="Preview de imagen seleccionada">
+
+            @endif
+        </div>
+
         {{-- @error('') => Acepta un parametro que debe ser el mismo que el valor que se agregó al atributo "wire:model" del campo --}}
         @error('imagen')
         {{-- Siempre los Componente de Livewiere deben seguír esta convención "<livewire:[nombre del componente]" /> --}}
