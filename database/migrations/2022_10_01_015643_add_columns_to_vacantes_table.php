@@ -34,6 +34,13 @@ return new class extends Migration
     public function down()
     {
         Schema::table('vacantes', function (Blueprint $table) {
+
+            /** Antes de eliminar las columnas de la tablas se debe eliminar las Foreing Key / Indices por que sino se obtendrá un error **/
+            /** Para obtener los nombres de los Indices se debe buscar en el IDE de la BD, por lo general la ruta suele ser: "SCHEMAS-> NOMBRE TABLA -> INDICES" **/
+            $table->dropForeign('vacantes_salario_id_foreign');
+            $table->dropForeign('vacantes_categoria_id_foreign');
+            $table->dropForeign('vacantes_user_id_foreign');
+
             $table->dropColumn([
                 'titulo',
                 'salario_id',
