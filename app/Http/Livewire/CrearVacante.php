@@ -39,10 +39,13 @@ class CrearVacante extends Component
 
     public function crearVacante()
     {
+
+        // VALIDAR FORMULARIO
         //$this->validate() => Toma las reglas asignadas por convención a la variable "$rules" y valida que se hayan cumplido las reglas.
         //                     Si se cumplieron todas las reglas los valores de los campos se asignan a la variable "datos"
         $datos = $this->validate();
 
+        // ALMACENAR IMAGEN
         // Almacena la imagen fisica en el servidor
         // $this->imagen => Propiedad de la clase que contiene la Imagen Fisica
         // store('string') => Método que acepta como parametro una ruta donde se almacenará la Imagen Fisica
@@ -52,6 +55,7 @@ class CrearVacante extends Component
         // Se almacenará en la siguiente ruta: "storage\app\public\vacantes\[NOMBRE IMAGEN].png"
         $datos['imagen'] = str_replace('public/vacantes/', '', $imagen);
 
+        // CREAR VACANTE
         // Vacante => Modelo que hace referencia a la tabla "Vacante" de la base de datos, esta referencia se utiliza para crear, editar, mostrar y eliminar datos de la tabla "Vacante".
         // ::create => Método que realiza un INSERT en la tabla referida en el Modelo con los datos que contiene el array que se le pasa como parametro
         Vacante::create([
@@ -64,6 +68,17 @@ class CrearVacante extends Component
             'imagen' => $datos['imagen'],
             'user_id' => auth()->user()->id, // Como en el formulario de Alta de Vacanes se requiere estar logeado para visualiarla, podemos utilizar los datos de la Sesión
         ]);
+
+        //CREAR MENSAJE
+        // session()->flash('NOMBRE VARIABLE', 'VALOR DE LA VARIABLE') => Se utiliza para almacenar una variable de corta duración que se enviará
+        // en la petición que se realice a continuación, pero esta se eliminará con la 2da petición que se realice.
+        // En este caso lo utilizaremos para mostrar un mensaje al usuario en la página que será redireccionado, cabe destacar que este mensaje se eliminará cuando recarge la página.
+        session()->flash('mensaje', 'La Vacante se publicó correctamente');
+
+        // REDIRECCIONAR AL USUARIO
+        // redirect()->route('ALIAS DE LA RUTA') => Esta función se utiliza para redireccionar al usuario,
+        // se le pasa como parametro el Alias que se agregó en algunos de los archivos del siguiente directorio: "routes/"
+        return redirect()->route('vacantes.index');
     }
 
 
