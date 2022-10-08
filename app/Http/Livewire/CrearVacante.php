@@ -41,6 +41,14 @@ class CrearVacante extends Component
         //$this->validate() => Toma las reglas asignadas por convención a la variable "$rules" y valida que se hayan cumplido las reglas.
         //                     Si se cumplieron todas las reglas los valores de los campos se asignan a la variable "datos"
         $datos = $this->validate();
+
+        // Almacena la imagen fisica en el servidor
+        // $this->imagen => Propiedad de la clase que contiene la Imagen Fisica
+        // store('string') => Método que acepta como parametro una ruta donde se almacenará la Imagen Fisica
+        $imagen = $this->imagen->store('public/vacantes');
+
+        // Quitamos la ruta obtenida de la Imagen y solo obtenemos su nombre generado automaticamente por Laravel
+        $nombre_imagen = str_replace('public/vacantes/', '', $imagen);
     }
 
 
