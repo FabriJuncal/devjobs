@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Categoria;
 use App\Models\Salario;
+use App\Models\Vacante;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -48,7 +49,21 @@ class CrearVacante extends Component
         $imagen = $this->imagen->store('public/vacantes');
 
         // Quitamos la ruta obtenida de la Imagen y solo obtenemos su nombre generado automaticamente por Laravel
-        $nombre_imagen = str_replace('public/vacantes/', '', $imagen);
+        // Se almacenará en la siguiente ruta: "storage\app\public\vacantes\[NOMBRE IMAGEN].png"
+        $datos['imagen'] = str_replace('public/vacantes/', '', $imagen);
+
+        // Vacante => Modelo que hace referencia a la tabla "Vacante" de la base de datos, esta referencia se utiliza para crear, editar, mostrar y eliminar datos de la tabla "Vacante".
+        // ::create => Método que realiza un INSERT en la tabla referida en el Modelo con los datos que contiene el array que se le pasa como parametro
+        Vacante::create([
+            'titulo' => $datos['titulo'],
+            'salario_id' => $datos['salario'],
+            'categoria_id' => $datos['categoria'],
+            'empresa' => $datos['empresa'],
+            'ultimo_dia' => $datos['ultimo_dia'],
+            'descripcion' => $datos['descripcion'],
+            'imagen' => $datos['imagen'],
+            'user_id' => auth()->user()->id, // Como en el formulario de Alta de Vacanes se requiere estar logeado para visualiarla, podemos utilizar los datos de la Sesión
+        ]);
     }
 
 
