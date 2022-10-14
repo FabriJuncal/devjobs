@@ -33,5 +33,8 @@
     @empty
         <p class="p-3 text-center text-sm text-gray-600">No hay vacantes que mostrar</p>
     @endforelse
+</div>
 
+<div class="mt-10">
+    {{ $vacantes->links() }}
 </div>
