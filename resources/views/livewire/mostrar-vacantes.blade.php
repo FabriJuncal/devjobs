@@ -1,5 +1,6 @@
 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-    @foreach ($vacantes as $vacante )
+    {{-- @forelse => Es una mescla entre un "foreach" y un "if", lo que hace es iterar sobre el array si este contiene registros, y si este no contiene registros ejecuta el código del "@empty"--}}
+    @forelse ($vacantes as $vacante )
         <div class="p-6 bg-white border-b border-gray-200 md:flex md:justify-between md:items-center">
             <div class="leading-10">
                 <a href="#" class="text-xl font-bold">
@@ -29,6 +30,8 @@
                 </a>
             </div>
         </div>
-    @endforeach
+    @empty
+        <p class="p-3 text-center text-sm text-gray-600">No hay vacantes que mostrar</p>
+    @endforelse
 
 </div>

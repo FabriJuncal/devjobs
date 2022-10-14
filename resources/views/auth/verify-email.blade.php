@@ -1,3 +1,5 @@
+{{-- RECORDATORIO: para ingresar al casillero de mails de Mail Hog, se deberá ingresar a la siguiente ruta: "http://localhost:8025/" --}}
+
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
