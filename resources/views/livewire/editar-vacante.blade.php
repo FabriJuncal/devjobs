@@ -99,7 +99,7 @@
 
                                 <!-- Imagen -->
                                 <div>
-                                    <x-input-label for="imagen" :value="__('imagen')" />
+                                    <x-input-label :value="__('imagen')" />
                                     {{-- wire:model => Suplanta al atributo "name" y sirve para sincronizar con los atributos directamente del backend mediante Livewire --}}
                                     <x-text-input
                                         id="imagen"
@@ -110,16 +110,16 @@
                                                                 por lo tanto esto hará que a la hora de seleccionar un
                                                                 archivo, solo se muestren las imagenes --}}
 
-                                    {{-- <div class="my-5 w-80">
+                                    <div class="my-5 w-80">
                                         @if ($imagen)
-                                            Preview de imagen seleccionada: --}}
+                                            Imagen Actual:
                                             {{-- En el atributo "src" llamos al atributo que contendrá la imagen
                                                 (El atributo en este caso es "$imagen" y se lo puede encontrar definido en el archivo .php del componente).
                                                 Luego llamos al método "temporaryUrl()" que almacena la imagen de manera temporal. --}}
-                                            {{-- <img src="{{ $imagen->temporaryUrl() }}" alt="Preview de imagen seleccionada">
+                                            <img src="{{ asset('storage/vacantes/'. $imagen) }}" alt="Imagen Vacante $titulo">
 
                                         @endif
-                                    </div> --}}
+                                    </div>
 
                                     {{-- @error('') => Acepta un parametro que debe ser el mismo que el valor que se agregó al atributo "wire:model" del campo --}}
                                     @error('imagen')
