@@ -7,6 +7,7 @@ use App\Models\Salario;
 use App\Models\Vacante;
 use Illuminate\Support\Carbon;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 // Los PHP de los componentes tienen la funcionalidad similar a la de un Controlador de Laravel
 class EditarVacante extends Component
@@ -20,6 +21,10 @@ class EditarVacante extends Component
     public $ultimo_dia;
     public $descripcion;
     public $imagen;
+    public $imagen_nueva;
+
+    // Habilita la subida de archivos en un componente de Livewire
+    use WithFileUploads;
 
     /** Agregamos las reglas de validación para los campos del formulario **/
     /** Cabe destacar que la variable debe llamarse "$rule" por convención de Laravel, sino no se tomarán las reglas **/
@@ -29,7 +34,8 @@ class EditarVacante extends Component
         'categoria' => 'required',
         'empresa' => 'required',
         'ultimo_dia' => 'required',
-        'descripcion' => 'required'
+        'descripcion' => 'required',
+        'imagen_nueva' => 'nullable|image|max:1024' // => Estas reglas indican que: el campo puede ser nulo, pero en el caso que contenga algo debe ser una imagen y maximo debe pesar 1mb
     ];
 
     public function mount(Vacante $vacante)
@@ -54,6 +60,17 @@ class EditarVacante extends Component
         $datos = $this->validate();
 
         // Si hay una nueva imagen
+        if($this->imagen_nueva){
+            // ALMACENAR IMAGEN
+            // Almacena la imagen fisica en el servidor
+            // $this->imagen => Propiedad de la clase que contiene la Imagen Fisica
+            // store('string') => Método que acepta como parametro una ruta donde se almacenará la Imagen Fisica
+            $imagen = $this->imagen_nueva->store('public/vacantes');
+
+            // Quitamos la ruta obtenida de la Imagen y solo obtenemos su nombre generado automaticamente por Laravel
+            // Se almacenará en la siguiente ruta: "storage\app\public\vacantes\[NOMBRE IMAGEN].png"
+            $datos['imagen'] = str_replace('public/vacantes/', '', $imagen);
+        }
 
         // Se busca la vacante a editar
         $vacante = Vacante::find($this->vacante_id);
@@ -65,6 +82,7 @@ class EditarVacante extends Component
         $vacante->empresa = $datos['empresa'];
         $vacante->ultimo_dia = $datos['ultimo_dia'];
         $vacante->descripcion = $datos['descripcion'];
+        $vacante->imagen = $datos['imagen'] ?? $vacante->imagen;
 
         // Se guarda la vacante
         $vacante->save();

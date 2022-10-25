@@ -102,10 +102,10 @@
                                     <x-input-label :value="__('imagen')" />
                                     {{-- wire:model => Suplanta al atributo "name" y sirve para sincronizar con los atributos directamente del backend mediante Livewire --}}
                                     <x-text-input
-                                        id="imagen"
+                                        id="imagen_nueva"
                                         class="block mt-1"
                                         type="file"
-                                        wire:model="imagen"
+                                        wire:model="imagen_nueva"
                                         accept="image/*"/> {{-- Indicamos en el campo que solo se permitirá imagenes,
                                                                 por lo tanto esto hará que a la hora de seleccionar un
                                                                 archivo, solo se muestren las imagenes --}}
@@ -113,16 +113,25 @@
                                     <div class="my-5 w-80">
                                         @if ($imagen)
                                             Imagen Actual:
+                                            {{-- asset('storage/vacantes/'. $imagen) => Accedemos al directorio "asset" y concatenamos el nombre de la imagen obtenida de la base de datos para mostrarla. --}}
+                                            <img src="{{ asset('storage/vacantes/'. $imagen) }}" alt="Imagen Vacante {{ $titulo }}">
+
+                                        @endif
+                                    </div>
+
+                                    <div class="my-5 w-80">
+                                        @if ($imagen_nueva)
+                                            Imagen Nueva:
                                             {{-- En el atributo "src" llamos al atributo que contendrá la imagen
                                                 (El atributo en este caso es "$imagen" y se lo puede encontrar definido en el archivo .php del componente).
                                                 Luego llamos al método "temporaryUrl()" que almacena la imagen de manera temporal. --}}
-                                            <img src="{{ asset('storage/vacantes/'. $imagen) }}" alt="Imagen Vacante $titulo">
+                                            <img src="{{ $imagen_nueva->temporaryUrl() }}" alt="Nueva Imagen Vacante {{ $titulo }}">
 
                                         @endif
                                     </div>
 
                                     {{-- @error('') => Acepta un parametro que debe ser el mismo que el valor que se agregó al atributo "wire:model" del campo --}}
-                                    @error('imagen')
+                                    @error('imagen_nueva')
                                     {{-- Siempre los Componente de Livewiere deben seguír esta convención "<livewire:[nombre del componente]" /> --}}
                                     {{-- :message="$message" => De esta manera le pasamos un parametro al Componente --}}
                                         <livewire:mostrar-alerta :message="$message"/>
@@ -132,7 +141,7 @@
                                 {{-- Se pueden agregar clases a los componentenes en donde estos sobreescribiran los estilos por defectos del componente --}}
                                 <x-primary-button class="justify-center">
                                     {{-- __('Algun texto') => Lo que se encuentre dentro de los guiones y parentecis como en el ejemplo, quiere decir que se puede traducir --}}
-                                    {{ __('Crear Vacante') }}
+                                    {{ __('Guardar Cambios') }}
                                 </x-primary-button>
 
                             </form>
