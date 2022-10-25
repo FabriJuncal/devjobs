@@ -12,6 +12,7 @@ use Livewire\Component;
 class EditarVacante extends Component
 {
     /** Creamos los atributos que se conectaran con los campos del Frontend mediante Livewiere **/
+    public $vacante_id;
     public $titulo;
     public $salario;
     public $categoria;
@@ -33,6 +34,7 @@ class EditarVacante extends Component
 
     public function mount(Vacante $vacante)
     {
+        $this->vacante_id = $vacante->id;
         $this->titulo = $vacante->titulo;
         $this->salario = $vacante->salario_id;
         $this->categoria = $vacante->categoria_id;
@@ -46,7 +48,37 @@ class EditarVacante extends Component
     }
 
     public function editarVacante(){
+
+        // Validamos los campos tomando las reglas del array "$rules"
+        // $this->validate() => Valida los campos y retorna un array
         $datos = $this->validate();
+
+        // Si hay una nueva imagen
+
+        // Se busca la vacante a editar
+        $vacante = Vacante::find($this->vacante_id);
+
+        // Se asigna los valores
+        $vacante->titulo = $datos['titulo'];
+        $vacante->salario_id = $datos['salario'];
+        $vacante->categoria_id = $datos['categoria'];
+        $vacante->empresa = $datos['empresa'];
+        $vacante->ultimo_dia = $datos['ultimo_dia'];
+        $vacante->descripcion = $datos['descripcion'];
+
+        // Se guarda la vacante
+        $vacante->save();
+
+        // session()->flash('NOMBRE VARIABLE', 'VALOR DE LA VARIABLE') => Se utiliza para almacenar una variable de corta duración que se enviará
+        // en la petición que se realice a continuación, pero esta se eliminará con la 2da petición que se realice.
+        // En este caso lo utilizaremos para mostrar un mensaje al usuario en la página que será redireccionado, cabe destacar que este mensaje se eliminará cuando recarge la página.
+        session()->flash('mensaje', 'La vacante se actualizó correctamente.');
+
+        // REDIRECCIONAR AL USUARIO
+        // redirect()->route('ALIAS DE LA RUTA') => Esta función se utiliza para redireccionar al usuario,
+        // se le pasa como parametro el Alias que se agregó en algunos de los archivos del siguiente directorio: "routes/"
+        return redirect()->route('vacantes.index');
+
     }
 
     public function render()
