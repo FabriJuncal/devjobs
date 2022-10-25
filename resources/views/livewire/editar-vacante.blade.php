@@ -1,6 +1,6 @@
 {{-- wire:submit.prevent => Le agrega la misma funcionalidad que el "Prevent Default" para quitar la acción por default del formulario.
                             Tambien de esta forma enviamos los datos de los campos a los atributos sincronizados en el backend mediante Livewire --}}
-                            <form action="" class="md:w-1/2 space-y-5" wire:submit.prevent='crearVacante'>
+                            <form action="" class="md:w-1/2 space-y-5" wire:submit.prevent='editarVacante'>
                                 <!-- Titulo Vacante -->
                                 <div>
                                     <x-input-label for="titulo" :value="__('Titulo Vacante')" />
@@ -21,7 +21,7 @@
                                     {{-- wire:model => Suplanta al atributo "name" y sirve para sincronizar con los atributos directamente del backend mediante Livewire --}}
                                     <select wire:model="salario" id="salario" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full">
 
-                                        <option>-- Seleccione --</option>
+                                        <option value="">-- Seleccione --</option>
                                         @foreach ($salarios as $salario)
                                             <option value="{{ $salario->id }}">{{ $salario->salario }}</option>
                                         @endforeach
@@ -40,7 +40,7 @@
                                     <x-input-label for="categoria" :value="__('Categoría')" />
                                     {{-- wire:model => Suplanta al atributo "name" y sirve para sincronizar con los atributos directamente del backend mediante Livewire --}}
                                     <select wire:model="categoria" id="categoria" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full">
-                                        <option>-- Seleccione --</option>
+                                        <option value="">-- Seleccione --</option>
                                         @foreach ($categorias as $categoria)
                                             <option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>
                                         @endforeach

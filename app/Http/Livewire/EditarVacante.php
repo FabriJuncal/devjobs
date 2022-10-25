@@ -20,6 +20,17 @@ class EditarVacante extends Component
     public $descripcion;
     public $imagen;
 
+    /** Agregamos las reglas de validación para los campos del formulario **/
+    /** Cabe destacar que la variable debe llamarse "$rule" por convención de Laravel, sino no se tomarán las reglas **/
+    protected $rules = [
+        'titulo' => 'required|string',
+        'salario' => 'required',
+        'categoria' => 'required',
+        'empresa' => 'required',
+        'ultimo_dia' => 'required',
+        'descripcion' => 'required'
+    ];
+
     public function mount(Vacante $vacante)
     {
         $this->titulo = $vacante->titulo;
@@ -32,6 +43,10 @@ class EditarVacante extends Component
         $this->ultimo_dia = Carbon::parse( $vacante->ultimo_dia )->format('Y-m-d');
         $this->descripcion = $vacante->descripcion;
         $this->imagen = $vacante->imagen;
+    }
+
+    public function editarVacante(){
+        $datos = $this->validate();
     }
 
     public function render()
