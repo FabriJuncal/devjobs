@@ -59,7 +59,10 @@ class VacanteController extends Controller
      */
     public function edit(Vacante $vacante)
     {
-        //
+        // $this->authorize() => Método de Autorización que recibe 2 parametros.
+        //      1er Parametro => Nombre del método del Policy (Por lo general los nombres son acciones)
+        //      2do Parametro => Instancía del modelo para que el Policy lo valide
+        $this->authorize('update', $vacante);
 
         return view('vacantes.edit', [
             'vacante' => $vacante
