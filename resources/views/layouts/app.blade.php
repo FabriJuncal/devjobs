@@ -13,7 +13,14 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+        {{-- Importamos los Estilos de Livewire --}}
         @livewireStyles
+        {{-- Importamos los Estilos Personalizados --}}
+        {{-- @stack('') => Directiva que sirve para reservar un espacio en el código en Laravel,
+                        de esta forma reservamos este espacio para importar los estilos personalizados --}}
+        {{-- Parametro => Recibe como parametro un valor string que puede ser cualquier nombre que luego se hará referencia
+                        con la directiva "@push('')" --}}
+        @stack('styles')
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -32,6 +39,14 @@
             </main>
         </div>
 
+        {{-- Importamos los Scripts de Livewire --}}
         @livewireScripts
+        {{-- Importamos los Estilos Personalizados --}}
+        {{-- @stack('') => Directiva que sirve para reservar un espacio en el código en Laravel,
+                        de esta forma reservamos este espacio para importar los scripts personalizados.
+            Parametro => Recibe como parametro un valor string que puede ser cualquier nombre que luego se hará referencia
+                        con la directiva "@push('')"
+        --}}
+        @stack('scripts')
     </body>
 </html>
