@@ -25,11 +25,15 @@
                     class="bg-blue-800 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase text-center">
                     Editar
                     </a>
-
-                    <a href="#"
-                    class="bg-red-600 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase text-center">
+                    {{-- wire:click => Hace referencia al Evento "click" --}}
+                    {{-- $emit('') => Permite indicar que función queremos ejecutar cuando se cumpla el evento
+                            1er Parametro => El 1er parametro que recibe es el nombre de la función definido en el controlador del componente (en el PHP) o en el apartado de scripts (en el JS) --}}
+                    {{--    2do Parametro => Como 2do parametro recibe una variable con valores para procesarlos desde el contolador del componente (en el PHP) o en el apartado de scripts (en el JS) --}}
+                    <button
+                        wire:click="$emit('prueba', {{ $vacante->id }})"
+                        class="bg-red-600 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase text-center">
                         Eliminar
-                    </a>
+                    </button>
                 </div>
             </div>
         @empty
@@ -47,23 +51,28 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-        Swal.fire({
-        title: '¿Eliminar Vacante?',
-        text: "Una vacante eliminado no se puede recuperar",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, ¡Eliminar!',
-        cancelButtonText: 'Cancelar'
-        }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire(
-            '¡Vacante Eliminada!',
-            'Se eliminó la vacante',
-            'success'
-            )
-        }
-        })
+
+        Livewire.on('prueba', vacanteId => {
+            alert('Desde el Código de JS => ID nro: ' + vacanteId);
+        });
+
+        // Swal.fire({
+        // title: '¿Eliminar Vacante?',
+        // text: "Una vacante eliminado no se puede recuperar",
+        // icon: 'warning',
+        // showCancelButton: true,
+        // confirmButtonColor: '#3085d6',
+        // cancelButtonColor: '#d33',
+        // confirmButtonText: 'Si, ¡Eliminar!',
+        // cancelButtonText: 'Cancelar'
+        // }).then((result) => {
+        // if (result.isConfirmed) {
+        //     Swal.fire(
+        //     '¡Vacante Eliminada!',
+        //     'Se eliminó la vacante',
+        //     'success'
+        //     )
+        // }
+        // })
     </script>
 @endpush
