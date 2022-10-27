@@ -23,4 +23,18 @@ class Vacante extends Model
         'imagen',
         'user_id'
     ];
+
+    public function categoria()
+    {
+        // belongsTo() => Método que hace la relación de "uno a Muchos"
+        //  -> 1er Parametro => Modelo con el que se quiere relacionar
+        return $this->belongsTo(Categoria::class);
+    }
+
+    public function salario()
+    {
+        // belongsTo() => Método que hace la relación de "uno a Muchos"
+        //  -> 1er Parametro => Modelo con el que se quiere relacionar
+        return $this->belongsTo(Salario::class);
+    }
 }
