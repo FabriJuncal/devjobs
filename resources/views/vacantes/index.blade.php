@@ -14,6 +14,7 @@
                 </div>
             @endif
 
+            {{-- Llamamos al componente creado con Livewire --}}
             <livewire:mostrar-vacantes />
 
         </div>

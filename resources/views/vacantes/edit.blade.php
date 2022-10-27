@@ -13,6 +13,7 @@
                     <h1 class="text-2x1 font-bold text-center mb-10">Editar Vacante: {{ $vacante->titulo }}</h1>
 
                     <div class="md:flex md:justify-center p-5">
+                        {{-- Llamamos al componente creado con Livewire y le pasamos la instancia del modelo con :vacante="$vacante" --}}
                         <livewire:editar-vacante
                             :vacante="$vacante"
                         />
