@@ -56,6 +56,7 @@
         </div>
     </div>
 
+    {{-- Se muestra solo si el usuario no esta Logeado --}}
     @guest
         <div class="mt-5 bg-gray-50 border border-dashed p-5 text-center">
             <p>
@@ -66,5 +67,18 @@
             </p>
         </div>
     @endguest
+
+    {{-- No se muestra si el usuario no cumple con la lógica del Policy de la ruta: --}}
+    {{-- Linea: 54 --}}
+    {{-- Archivo: app\Policies\VacantePolicy.php --}}
+
+    {{-- @cannot('[NOMBRE DEL MÉTODO DEL POLICY]', [RUTA DEL MODELO]) => Directiva de Laravel que ejecuta el código dentro solos si el la condición del Policy no se cumple.
+                                                                         Tambien existe la directiva opesta a esta, que es "@can()"--}}
+    {{-- 1er Parametro => Nombre del método del Policy --}}
+    {{-- 2do Parametro => Ruta del Modelo (De otra forma no funcionará) --}}
+    @cannot('create', App\Models\Vacante::class)
+        <livewire:postular-vacante />
+    @endcannot
+
 
 </div>
