@@ -32,7 +32,14 @@ class VacanteController extends Controller
      */
     public function create()
     {
-        //
+        // Valida a quien puede crear un registro (hacer un INSERT) y a quien no, en este caso debe poder si tiene el rol de  Reclutador,
+        // y no dejar si el usuario tiene el rol de Desarrollador
+
+        // $this->authorize('create') => Hace referencia al método del policy que se encuentra en la siguiente ubicación "app\Policies\VacantePolicy.php"
+        //      1er Parametro => Nombre del método del Policy (Por lo general los nombres son acciones)
+        //      2do Parametro => Dependiendo el método del policy, este va a solicitar la Instancía del Modelo o el Modelo como en este caso.
+        //                       Ya que si se ve el método, este no lo autodefine como en el caso del método del Policy llamado"update"
+        $this->authorize('create', Vacante::class);
         return view('vacantes.create');
     }
 

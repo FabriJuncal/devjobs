@@ -16,6 +16,10 @@ class VacantePolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
+    // Cuanto el método como en este caso no hace referencia a la Instancia, se le pasa el modelo completo
+    // como en el caso de la siguiente linea de código:
+    // Linea: 24
+    // Archivo: app\Http\Controllers\VacanteController.php
     public function viewAny(User $user)
     {
         // Definimos que solo aquel usuario con el Rol nro 2 puede ver el modelo
@@ -35,14 +39,19 @@ class VacantePolicy
     }
 
     /**
-     * Determine whether the user can create models.
+     * Determinar si el usuario puede crear modelos.
      *
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
+    // Cuanto el método como en este caso no hace referencia a la Instancia, se le pasa el modelo completo
+    // como en el caso de la siguiente linea de código:
+    // Linea: 42
+    // Archivo: app\Http\Controllers\VacanteController.php
     public function create(User $user)
     {
-        //
+        // Definimos que solo aquel usuario con el Rol nro 2 puede hacer un Insert
+        return $user->rol === 2;
     }
 
     /**
