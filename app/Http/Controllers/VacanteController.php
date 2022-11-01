@@ -14,7 +14,14 @@ class VacanteController extends Controller
      */
     public function index()
     {
-        //
+        // Valida a quien mostrar el modelo y a quien no, en este caso debe mostrar el modelo si tiene el rol de  Reclutador,
+        // y no mostrarlo si el usuario tiene el rol de Desarrollador
+
+        // $this->authorize('viewAny') => Hace referencia al método del policy que se encuentra en la siguiente ubicación "app\Policies\VacantePolicy.php"
+        //      1er Parametro => Nombre del método del Policy (Por lo general los nombres son acciones)
+        //      2do Parametro => Dependiendo el método del policy, este va a solicitar la Instancía del Modelo o el Modelo como en este caso.
+        //                       Ya que si se ve el método, este no lo autodefine como en el caso del método del Policy llamado"update"
+        $this->authorize('viewAny', Vacante::class);
         return view('vacantes.index');
     }
 
@@ -61,9 +68,10 @@ class VacanteController extends Controller
      */
     public function edit(Vacante $vacante)
     {
-        // $this->authorize() => Método de Autorización que recibe 2 parametros.
+        // $this->authorize() =>  this->authorize('viewAny') => Hace referencia al método del policy que se encuentra en la siguiente ubicación "app\Policies\VacantePolicy.php".
         //      1er Parametro => Nombre del método del Policy (Por lo general los nombres son acciones)
-        //      2do Parametro => Instancía del modelo para que el Policy lo valide
+        //      2do Parametro => Dependiendo el método del policy, este va a solicitar la Instancía del Modelo o el Modelo.
+        //                       En este caso el método del policy solicita la Instancia del modelo.
         $this->authorize('update', $vacante);
 
         return view('vacantes.edit', [

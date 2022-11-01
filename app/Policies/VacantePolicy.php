@@ -11,14 +11,15 @@ class VacantePolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any models.
+     * Determinar si el usuario puede ver algún modelo.
      *
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function viewAny(User $user)
     {
-        //
+        // Definimos que solo aquel usuario con el Rol nro 2 puede ver el modelo
+        return $user->rol === 2;
     }
 
     /**
@@ -45,7 +46,7 @@ class VacantePolicy
     }
 
     /**
-     * Determine whether the user can update the model.
+     * Determinar si el usuario puede actualizar el modelo.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Vacante  $vacante
