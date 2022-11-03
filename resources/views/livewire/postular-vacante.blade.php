@@ -7,6 +7,12 @@
             {{-- accept=".pdf" => Indicamos que solo se podrá subír archivos de tipo ".pdf" --}}
             <x-text-input id="cv" type="file" accept=".pdf" class="block mt-1 w-full"/>
         </div>
+
+        {{-- Se pueden agregar clases a los componentenes en donde estos sobreescribiran los estilos por defectos del componente --}}
+        <x-primary-button class="my-5">
+            {{-- __('Algun texto') => Lo que se encuentre dentro de los guiones y parentecis como en el ejemplo, quiere decir que se puede traducir --}}
+            {{ __('Postularme') }}
+        </x-primary-button>
     </form>
 
 </div>
