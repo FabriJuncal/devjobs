@@ -5,7 +5,7 @@
         <div class="mb-4">
             <x-input-label for="cv" :value="__('Curriculum u Hoja de Vida (PDF)')" />
             {{-- accept=".pdf" => Indicamos que solo se podrá subír archivos de tipo ".pdf" --}}
-            <x-text-input id="cv" type="file" accept=".pdf" class="block mt-1 w-full"/>
+            <x-text-input wire:model="cv" id="cv" type="file" accept=".pdf" class="block mt-1 w-full"/>
         </div>
 
         @error('cv')
