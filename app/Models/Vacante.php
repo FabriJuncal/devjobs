@@ -37,4 +37,11 @@ class Vacante extends Model
         //  -> 1er Parametro => Modelo con el que se quiere relacionar
         return $this->belongsTo(Salario::class);
     }
+
+    public function candidatos()
+    {
+        // hasMany() => Método que hace la relación de "Muchos a Muchos"
+        //  -> 1er Parametro => Modelo con el que se quiere relacionar
+        return $this->hasMany(Candidato::class);
+    }
 }

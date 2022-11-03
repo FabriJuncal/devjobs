@@ -68,17 +68,19 @@
         </div>
     @endguest
 
-    {{-- No se muestra si el usuario no cumple con la lógica del Policy de la ruta: --}}
-    {{-- Linea: 54 --}}
-    {{-- Archivo: app\Policies\VacantePolicy.php --}}
+    @auth
+        {{-- No se muestra si el usuario no cumple con la lógica del Policy de la ruta: --}}
+        {{-- Linea: 54 --}}
+        {{-- Archivo: app\Policies\VacantePolicy.php --}}
 
-    {{-- @cannot('[NOMBRE DEL MÉTODO DEL POLICY]', [RUTA DEL MODELO]) => Directiva de Laravel que ejecuta el código dentro solos si el la condición del Policy no se cumple.
-                                                                         Tambien existe la directiva opesta a esta, que es "@can()"--}}
-    {{-- 1er Parametro => Nombre del método del Policy --}}
-    {{-- 2do Parametro => Ruta del Modelo (De otra forma no funcionará) --}}
-    @cannot('create', App\Models\Vacante::class)
-        <livewire:postular-vacante />
-    @endcannot
+        {{-- @cannot('[NOMBRE DEL MÉTODO DEL POLICY]', [RUTA DEL MODELO]) => Directiva de Laravel que ejecuta el código dentro solos si el la condición del Policy no se cumple.
+                                                                            Tambien existe la directiva opesta a esta, que es "@can()"--}}
+        {{-- 1er Parametro => Nombre del método del Policy --}}
+        {{-- 2do Parametro => Ruta del Modelo (De otra forma no funcionará) --}}
+        @cannot('create', App\Models\Vacante::class)
+            <livewire:postular-vacante :vacante="$vacante"/>
+        @endcannot
+    @endauth
 
 
 </div>
