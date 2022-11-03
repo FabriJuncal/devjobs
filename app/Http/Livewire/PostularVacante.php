@@ -54,6 +54,13 @@ class PostularVacante extends Component
 
         // Muestra al usuario un mensaje de ok
 
+        // session()->flash('NOMBRE VARIABLE', 'VALOR DE LA VARIABLE') => Se utiliza para almacenar una variable de corta duración que se enviará
+        // en la petición que se realice a continuación, pero esta se eliminará con la 2da petición que se realice.
+        // En este caso lo utilizaremos para mostrar un mensaje al usuario en la página que será redireccionado, cabe destacar que este mensaje se eliminará cuando recarge la página.
+        session()->flash('mensaje', 'Se envió correctamente tu información, mucha suerte');
+
+        // redirect()->back() => Regresa a la página anterior.
+        return redirect()->back();
     }
 
     public function render()
