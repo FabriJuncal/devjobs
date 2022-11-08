@@ -16,9 +16,12 @@ class NuevoCandidato extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($id_vacante, $nombre_vacante, $usuario_id)
     {
-        //
+        //Definimos los Atributos que se utilizarán en la clase
+        $this->id_vacante = $id_vacante;
+        $this->nombre_vacante = $nombre_vacante;
+        $this->usuario_id = $usuario_id;
     }
 
     /**
@@ -29,7 +32,10 @@ class NuevoCandidato extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        // Indicamos que las vías que se utilizarán para las Notificaciones serán por "Mails" y "Base de Datos".
+        // Es decir, en el array se indican que métodos se ejecutarán cuando se ejecute la función "->notify([INSTANCIA DE LA NOTIFICACIÓN])
+        // y se le pase como parametro la instancia de la Notificación creada.
+        return ['mail', 'database'];
     }
 
     /**
@@ -42,15 +48,34 @@ class NuevoCandidato extends Notification
     //  Método que viene ya definido en Laravel y se utiliza para el envio de Mails
     public function toMail($notifiable)
     {
+        // Creamos la URL que redireccionará el botón del Mail
+        $url = url('/notificaciones');
+
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    // Titulo
+                    ->subject('Postulación a la vacante "' . $this->nombre_vacante . '"')
+                    // Saludo del Inicio
+                    ->greeting('¡Hola!')
+                    // Linea de Texto
+                    ->line('Has recibido un nuevo candidato en tu vacante.')
+                    ->line('La vacante es: ' . $this->nombre_vacante)
+                    // Botón de redirección
+                    ->action('Ver Notificaciones',  $url)
+                    // Despedida
+                    ->salutation('Gracias por utilizar DebJobs');
     }
 
-    public function toDataBase($notifiable)
+    // Método que viene ya definido en Laravel y se utiliza para Almacenar la Notificación en la Base de Datos
+    public function toDatabase($notifiable)
     {
-
+        // Campos que se almacenarán en la Base de Datos en formato JSON
+        // Tabla en que se almacenan => "notifications"
+        // Campo en que se almacenan => "data"
+        return [
+            'id_vacante' => $this->id_vacante,
+            'nombre_vacante' => $this->nombre_vacante,
+            'usuario_id' => $this->usuario_id
+        ];
     }
 
     /**

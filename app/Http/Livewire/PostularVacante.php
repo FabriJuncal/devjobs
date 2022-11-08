@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Vacante;
+use App\Notifications\NuevoCandidato;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -51,6 +52,16 @@ class PostularVacante extends Component
         ]);
 
         // Crea la notificación y envía un email
+        // $this->vacante->reclutador => Se obtiene la relación entre el Modelo de "Vacante" y "Reclutador".
+        // Sería que se hace un INNER JOIN entre la tablas "vacantes" y "users", ya que no existe una tabla llamado "Reclutadores"
+        // solo se creó el método "reclutador" en el modelo de Vacantes y así poder hacer la relación )
+
+        // $this->vacante->reclutador->notify() => Método que ejecuta una Notificación
+        // 1er Parametro => Recibe como parametro una Clase de Notificaciones en este casó se llama "NuevoCandidato"
+
+        // new NuevoCandidato() => Instancia de la Notificación creada llamada "NuevoCandidato"
+        //  Parametros => Los parametros que se le pasa se define en el constructor de este para luego utilizarlos en los métodos
+        $this->vacante->reclutador->notify(new NuevoCandidato($this->vacante->id, $this->vacante->titulo, auth()->user()->id));
 
         // Muestra al usuario un mensaje de ok
 

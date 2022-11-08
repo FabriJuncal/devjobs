@@ -44,4 +44,14 @@ class Vacante extends Model
         //  -> 1er Parametro => Modelo con el que se quiere relacionar
         return $this->hasMany(Candidato::class);
     }
+
+    public function reclutador()
+    {
+        // belongsTo() => Método que hace la relación de "uno a Muchos"
+        //  -> 1er Parametro => Modelo con el que se quiere relacionar
+        //  -> 2do Parametro => Campo de referencia que se utilizará para hacer el INNER JOIN, normalmente Laravel lo hace en automatico,
+        //                      pero como en este caso no se esta siguiento la convención de Laravel (Al no existir un Modelo/Tabla llamado "reclutador")
+        //                      se hace referencia a la Tabla "Users"
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
