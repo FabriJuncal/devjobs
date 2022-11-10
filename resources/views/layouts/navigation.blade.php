@@ -102,6 +102,21 @@
                 <x-responsive-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')">
                     {{ __('Crear Vacante') }}
                 </x-responsive-nav-link>
+
+                {{-- Mostramos la Cantidad de Notificaciones sin ver --}}
+                {{-- Validamos que solo los usuarios con el Rol de "Reclutador" puedan ver las notificaciones --}}
+                @if (auth()->user()->rol === 2)
+                    <div class="flex gap-2 items-center p-3 border-t border-gray-200">
+                        <a href="{{ route('notificaciones.index') }}" class="mr-2 w-7 bg-indigo-600 hover:bg-indigo-800 rounded-full flex flex-col justify-center items-center text-sm font-extrabold text-white">
+                            {{-- auth()->user()->unreadNotifications->count() => Muestra la cantidad de Notificaciones sin ver --}}
+                            {{ auth()->user()->unreadNotifications->count() }}
+                        </a>
+                        <p class="text-base font-medium text-gray-600">
+                            {{-- @choice() => Según el valor numero que se le pase como 2do Parametro, este identificará si debe mostrar el String 1 o 2 que se le pase como 1er Parametro  --}}
+                            @choice('Notificacion|Notificaciones', auth()->user()->unreadNotifications->count())
+                        </p>
+                    </div>
+                @endif
             </div>
 
             <!-- Responsive Settings Options -->

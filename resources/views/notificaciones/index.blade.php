@@ -31,7 +31,7 @@
                             </div>
                         </div>
                     @empty
-                        <p class="p-3 text-center text-sm text-gray-600">No hay vacantes que mostrar</p>
+                        <p class="p-3 text-center text-sm text-gray-600">No hay notificaciones nuevas que mostrar</p>
                     @endforelse
                 </div>
             </div>
