@@ -19,6 +19,9 @@ class NotificacionController extends Controller
         // ->unreadNoitications => Este método mostrará las notificaciones no leídas del usuario logeado
         $notificaciones = auth()->user()->unreadNotifications;
 
+        // Limpia las Notificaciones unas ves vistas
+        auth()->user()->unreadNotifications->markAsRead();
+
         return view('notificaciones.index', [
             'notificaciones' =>$notificaciones
         ]);
