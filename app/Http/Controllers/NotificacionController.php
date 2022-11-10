@@ -16,7 +16,11 @@ class NotificacionController extends Controller
     // __invoke => Este Método Especial se utiliza cuando el Controllador será de un unico Método
     public function __invoke(Request $request)
     {
-        //
-        dd('Desde Notificaciones Controller');
+        // ->unreadNoitications => Este método mostrará las notificaciones no leídas del usuario logeado
+        $notificaciones = auth()->user()->unreadNotifications;
+
+        return view('notificaciones.index', [
+            'notificaciones' =>$notificaciones
+        ]);
     }
 }
