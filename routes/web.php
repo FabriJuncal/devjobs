@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 // Para esto agregamos el valor "verified" en la función "middleware([])"
 // Agregamos una 2da validación para que el usuario pueda ver las páginas de la plataforma
@@ -27,6 +27,6 @@ Route::get('/vacantes/{vacante}/edit',[ VacanteController::class, 'edit'])->midd
 Route::get('/vacantes/{vacante}',[ VacanteController::class, 'show'])->name('vacantes.show');
 
 // Notificaciones
-Route::get('/notificaciones', NotificacionController::class)->name('notificaciones.index');
+Route::get('/notificaciones', NotificacionController::class)->middleware(['auth' ,'verified', 'rol.reclutador'])->name('notificaciones.index');
 
 require __DIR__.'/auth.php';
