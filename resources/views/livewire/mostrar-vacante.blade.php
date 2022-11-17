@@ -45,8 +45,15 @@
     </div>
 
     <div class="md:grid md:grid-cols-6 gap-4">
+        {{-- Mostramos la minuatura y tambien le damos al usuario la opción de ver la imagen en grande --}}
         <div class="md:col-span-2">
-            <img src="{{ asset('storage/vacantes/' . $vacante->imagen) }}" alt="{{ "Imagen vacante " . $vacante->titulo }}">
+            <a target="_blank"
+                rel="noreferrer noopener"  {{-- => Se utiliza por una cuestión de seguridad. Esto evita pasar nuestra información personal a la nueva pestaña a la que nos dirigimos --}}
+                href="{{ asset('storage/vacantes/' . $vacante->imagen) }}">
+
+                <img src="{{ asset('storage/vacantes/' . $vacante->imagen) }}" alt="{{ "Imagen vacante " . $vacante->titulo }}">
+
+            </a>
         </div>
         <div class="md:col-span-4">
             <h2 class="text-2xl font-bold mb-5">

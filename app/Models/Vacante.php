@@ -42,7 +42,8 @@ class Vacante extends Model
     {
         // hasMany() => Método que hace la relación de "Muchos a Muchos"
         //  -> 1er Parametro => Modelo con el que se quiere relacionar
-        return $this->hasMany(Candidato::class);
+        // orderBy('created_at', 'DESC') => Ordena por el campo "created_at" de manera "Descendente"
+        return $this->hasMany(Candidato::class)->orderBy('created_at', 'DESC');
     }
 
     public function reclutador()
