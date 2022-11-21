@@ -28,7 +28,7 @@
                                     </div>
 
                                     <div class="mt-5 md:mt-0">
-                                        <a  class="inline-flex items-center shadow-sm px-2.5 py-0.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50"
+                                        <a  class="items-center shadow-sm px-2.5 py-0.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 block text-center"
                                             target="_blank"
                                             rel="noreferrer noopener"  {{-- => Se utiliza por una cuestión de seguridad. Esto evita pasar nuestra información personal a la nueva pestaña a la que nos dirigimos --}}
                                             href="{{ asset('storage/cv/' . $candidato->cv) }}">
@@ -40,7 +40,7 @@
                                 {{--
                                 <pre>
                                     {{ $candidato->user }}
-                                </pre>
+                                </pre>block
                                  --}}
                             @empty
                                 <p class="p-3 text-center text-sm text-gray-600">

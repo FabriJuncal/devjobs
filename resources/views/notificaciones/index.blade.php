@@ -26,7 +26,7 @@
                                     </p>
                                 </div>
                                 <div class="mt-5 md:mt-0">
-                                    <a href="{{ route('candidatos.index', $notificacion->data['id_vacante']) }}" class="bg-indigo-600 p-3 text-sm uppercase font-bold text-white rounded-lg">
+                                    <a href="{{ route('candidatos.index', $notificacion->data['id_vacante']) }}" class="bg-indigo-600 p-3 text-sm uppercase font-bold text-white rounded-lg block text-center">
                                         Ver Candidatos
                                     </a>
                                 </div>
