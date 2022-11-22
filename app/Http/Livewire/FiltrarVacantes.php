@@ -14,7 +14,9 @@ class FiltrarVacantes extends Component
 
     public function leerDatosFormulario()
     {
-        dd('Buscando...');
+        // $this->emit('NOMBRE-EVENTO-A-EJECUTAR') => Ejecuta un evento definido en el atributo protegido llamado "listeners"
+        // En este casó se ejecuta el Listener del archivo "app\Http\Livewire\HomeVacantes.php" en la linea "15"
+        $this->emit('terminosBusqueda', $this->termino, $this->categoria, $this->salario);
     }
 
     public function render()
