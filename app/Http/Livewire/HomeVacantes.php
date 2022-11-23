@@ -23,14 +23,26 @@ class HomeVacantes extends Component
         $this->categoria = $categoria;
         $this->salario = $salario;
 
-        dd("$this->termino, $this->categoria, $this->salario");
-
     }
 
     public function render()
     {
 
-        $vacantes = Vacante::all();
+        // Vacante::all() => Trae todas las vacantes sin filtras.
+        // Es equivalente a SELECT * FROM vacantes
+        // $vacantes = Vacante::all();
+
+        // Vacante::when() => Trae todas las vacantes cuando se ejecuta por 1ra vez la petición y el campo "termino" se encuentra vacio
+        // Es equivalente a SELECT * FROM WHERE titulo LIKE '%LO QUE TRAIGA EL CAMPO termino%'
+
+        // 1er Parametro => Campo que tendrá los valores por el cual se va a filtrar
+        // 2do Parametro => Callback / Función que recibe en automaticó el parametro "$query", aquí dentro se puede ejecutar un lógica
+        //                  como por ejemplo el WHERE que tenemos en este caso filtrando por el campo "titulo"
+        $vacantes = Vacante::when($this->termino, function($query){
+
+            $query->where('titulo', 'LIKE', "%$this->termino%");
+
+        })->paginate(20); // Página los resultados obtenidos la query ejecutada
 
         return view('livewire.home-vacantes',[
             'vacantes' => $vacantes
