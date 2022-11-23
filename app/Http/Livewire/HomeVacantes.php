@@ -38,11 +38,36 @@ class HomeVacantes extends Component
         // 1er Parametro => Campo que tendrá los valores por el cual se va a filtrar
         // 2do Parametro => Callback / Función que recibe en automaticó el parametro "$query", aquí dentro se puede ejecutar un lógica
         //                  como por ejemplo el WHERE que tenemos en este caso filtrando por el campo "titulo"
-        $vacantes = Vacante::when($this->termino, function($query){
 
+
+
+        // Esto es el equialente a:
+
+        /*
+
+            SELECT * FROM devjobs.vacantes v
+                INNER JOIN devjobs.categorias c ON  v.categoria_id = c.id
+                INNER JOIN devjobs.salarios s ON v.salario_id = s.id
+            WHERE  (v.categoria_id = 1
+                AND v.salario_id = 6
+                AND v.titulo LIKE '%PHP%')
+            OR
+                (v.categoria_id = 1
+                AND v.salario_id = 6
+                AND v.empresa LIKE '%Face%')
+
+        */
+        $vacantes = Vacante::when($this, function($query){
+            $query->where('categoria_id', $this->categoria);
+            $query->where('salario_id', $this->salario);
             $query->where('titulo', 'LIKE', "%$this->termino%");
-
-        })->paginate(20); // Página los resultados obtenidos la query ejecutada
+        })
+        ->when($this, function($query){
+            $query->orWhere('empresa', 'LIKE', "%$this->termino%"); // Separá la condición con el operador OR, por lo tanto si el filtro anterior es vacio, se ejecuta este.
+            $query->where('categoria_id', $this->categoria);
+            $query->where('salario_id', $this->salario);
+        })
+        ->paginate(20); // Página los resultados obtenidos la query ejecutada
 
         return view('livewire.home-vacantes',[
             'vacantes' => $vacantes
